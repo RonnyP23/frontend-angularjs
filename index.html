@@ -1,0 +1,77 @@
+<html lang="en" ng-app="listaTelefonica">
+  <!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"crossorigin="anonymous" />
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-resource.js"></script> -->
+    <title>extremeCase</title>
+
+    
+    </script>
+  </head>
+  <body ng-Controller="listaTelefonicaCtrl">
+    <div class="container">
+
+        <!-- INTERPOLAÇAO DA EXPRESSAO -->
+      <h3>{{app}}</h3>
+      <table class="table table-sm table-dark">
+        <tr>
+          <th></th>
+          <th>Nome</th>
+          <th>telefone</th>
+          <th>operadora</th>
+        </tr>
+
+<!-- ---------------------------------
+--------------METODO REPEAT -------
+------------------------------------------------>
+
+        <tr ng-class="{selecionado:contato.selecionado}" ng-repeat="contato in contatos">
+          <td><input type="checkbox" ng-model="contato.selecionado"></td>
+          <td>{{contato.nome}}</td>
+          <td>{{contato.telefone}}</td>
+          <td>{{contato.operadora.nome}}</td>
+        </tr>
+      </table>
+      <hr />
+
+<!-- ---------------------------NG-MODEL--------- -->
+
+
+      <form class="form">
+        <input class="form-control" type="text" ng-model="contato.nome" placeholder=" nome" />
+        <input class="form-control" type="number" ng-model="contato.telefone" placeholder=" telefone" />
+        <!-- <input class="form-control" type="number" ng-model="contato.operadora" placeholder=" idade" /> -->
+
+<!-- -------------------------NG-OPTIONS------------- -->
+
+        <select class="form-control" ng-model="contato.operadora" ng-options=" operadora.nome group by operadora.categoria for operadora in operadoras">
+          <option value="" > Selecione a sua operadora</option>
+        </select>
+
+
+
+      </form>
+      <button class="btn btn-block btn-secondary" ng-click="adcContato(contato)" ng-disabled="!contato.nome || !contato.telefone ">
+      Adicionar contato
+      </button>
+      <button class="btn btn-block btn-danger" ng-click="excluirCtt(contatos)" >
+      Excluir Contato
+      </button>
+    </div>
+
+    
+    <script src="../lib/angular-1.8.2/angular.min.js"></script>
+    <script src="../lib/angular-1.8.2/angular-messages.js"></script>
+    <!-- <script src="../lib/angular-1.8.2/angular-resource.js"></script> -->
+    <script src="./js/app.js"></script>
+    <script src="./js/service/produtos-service.js"></script>
+
+    <script src="./js/controllers/ListaTelefonicaCtrl.js"></script>
+    <!-- <script src="./js/resource/angular-resource.js"></script> -->
+  </body>
+</html>
